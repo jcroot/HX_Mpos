@@ -1,0 +1,111 @@
+package com.lk.td.pay.wedget;
+
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import com.lk.td.pay.beans.PopupItem;
+import com.lk.td.pay.utils.DensityUtil;
+import com.td.app.pay.hx.R;
+
+import java.util.List;
+
+/**
+ * Created by wsq on 2016/5/9.
+ */
+public class CustomPopupWindow extends PopupWindow{
+    private Context context;
+    private List<PopupItem> mData;
+    private ListView listView;
+    private View popupView;
+    private PopupAdapter mAdapter;
+    private float density;
+    public CustomPopupWindow(Context context, List<PopupItem> list, AdapterView.OnItemClickListener itemClick){
+        this.context = context;
+        this.mData = list;
+
+        popupView = LayoutInflater.from(context).inflate(R.layout.layout_popup, null);
+        listView = (ListView) popupView.findViewById(R.id.popup_list);
+        mAdapter = new PopupAdapter();
+        listView.setAdapter(mAdapter);
+
+        listView.setOnItemClickListener(itemClick);
+        density = context.getResources().getDisplayMetrics().density;
+
+        initPopup();
+    }
+
+    public void initPopup(){
+
+        int w = context.getResources().getDisplayMetrics().widthPixels;
+        // 设置按钮监听
+        // 设置SelectPicPopupWindow的View
+        this.setContentView(popupView);
+        // 设置SelectPicPopupWindow弹出窗体的宽
+        this.setWidth(w/2);
+        //
+        // 设置SelectPicPopupWindow弹出窗体的高
+        this.setHeight(DensityUtil.dp2px(context, (mData.size()*40)+20));
+        // 设置SelectPicPopupWindow弹出窗体可点击
+        this.setFocusable(true);
+        // 设置SelectPicPopupWindow弹出窗体动画效果
+//        this.setAnimationStyle(R.style.style_pop_anim);
+        // 实例化一个ColorDrawable颜色为半透明
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        // 设置SelectPicPopupWindow弹出窗体的背景
+        this.setBackgroundDrawable(dw);
+        this.setOutsideTouchable(true);
+    }
+
+
+    public class PopupAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+
+            ViewHodler hodler = null;
+            if (convertView == null){
+                convertView = LayoutInflater.from(context).inflate(R.layout.layout_popup_item, null);
+                hodler = new ViewHodler();
+                hodler.popup_Name = (TextView) convertView.findViewById(R.id.popup_name);
+                hodler.popup_state = (CheckBox) convertView.findViewById(R.id.popup_state);
+                convertView.setTag(hodler);
+            }else {
+                hodler = (ViewHodler) convertView.getTag();
+            }
+
+            hodler.popup_Name.setText(mData.get(position).getName());
+            hodler.popup_state.setChecked(mData.get(position).isState());
+            return convertView;
+        }
+
+        public class ViewHodler{
+            TextView popup_Name;
+            CheckBox popup_state;
+        }
+    }
+}

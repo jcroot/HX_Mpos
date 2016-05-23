@@ -1,0 +1,124 @@
+package com.lk.td.pay.async;
+
+import java.util.HashMap;
+
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.protocol.HttpContext;
+import org.json.JSONObject;
+
+import android.content.Context;
+
+import com.google.gson.Gson;
+import com.lk.td.pay.golbal.Constant;
+import com.lk.td.pay.golbal.MApplication;
+import com.lk.td.pay.golbal.Urls;
+import com.lk.td.pay.sharedpref.SharedPrefConstant;
+import com.lk.td.pay.tool.Logger;
+import com.lk.td.pay.utils.MD5Util;
+import com.lk.td.pay.utils.Utils;
+
+
+
+public class AsyncHttpCilentUtil {
+
+	private static AsyncHttpCilentUtil asyncHttp = null; 
+	protected static AsyncHttpClient mAsyncHttpClient = null;
+	protected Context mContext;
+	
+	public static AsyncHttpCilentUtil getInstance(){
+		if(asyncHttp == null){
+			asyncHttp = new AsyncHttpCilentUtil();
+		}
+		/************************************************/
+		HttpContext httpContext = mAsyncHttpClient.getHttpContext();
+        
+		PersistentCookieStore myCookieStore = new PersistentCookieStore(MApplication.getInstance());  
+		mAsyncHttpClient.setCookieStore(myCookieStore);
+		CookieStore cookies = (CookieStore) httpContext.getAttribute(ClientContext.COOKIE_STORE);
+        if(cookies!=null){
+            for(Cookie c:cookies.getCookies()){
+            }
+        }else{
+        }
+        
+		/***********************************************/
+		return asyncHttp;
+	}
+	public static void cancle(Context context){
+		mAsyncHttpClient.cancelRequests(context, true);
+	}
+	
+	private AsyncHttpCilentUtil(){
+		if(mAsyncHttpClient == null){
+			this.mContext = MApplication.getInstance();
+			mAsyncHttpClient = new AsyncHttpClient();
+			
+		}
+		Logger.init("[AsyHttpClientUtils]").hideThreadInfo();
+	}
+	
+	public void post(String url, HashMap<String, String> params, AsyncHttpResponseHandler handler){
+		if(params.containsKey("custPwd")){
+			params.put("custPwd", MD5Util.generatePassword(params.get("custPwd")));
+		}
+		if(params.containsKey("newPwd")){
+			params.put("newPwd", MD5Util.generatePassword(params.get("newPwd")));
+		}
+		
+		params.put("sysType", Constant.SYS_TYPE);
+		params.put("sysVersion", Constant.SYS_VERSIN);
+		params.put("appVersion", Utils.getVersion(mContext));
+		params.put("sysTerNo", Utils.getLocalIpAddress());
+		params.put("custId", MApplication.mSharedPref.getSharePrefString(SharedPrefConstant.CUSTID));
+		params.put("txnDate", Utils.getCurrentDate("yyMMdd"));
+		params.put("txnTime", Utils.getCurrentDate("HHmmss"));
+		//params.put("token", "");
+		JSONObject object = new JSONObject();
+		Gson gson = new Gson();
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		HashMap<String, Object> signMap = new HashMap<String, Object>();
+		signMap.put("SIGN", MD5Util.generatePassword(gson.toJson(params)));
+		
+		data.put("REQ_BODY", params);
+		data.put("REQ_HEAD", signMap);
+		RequestParams requestParams = new RequestParams();
+		requestParams.put("REQ_MESSAGE", gson.toJson(data));
+		System.out.println("request-->REQ_MESSAGE="  + gson.toJson(data));
+		mAsyncHttpClient.post(MApplication.getInstance(), Urls.ROOT_URL+url, requestParams, handler);
+		
+	}
+	public void post(Context ctx,String url, HashMap<String, String> params, AsyncHttpResponseHandler handler){
+		if(params.containsKey("custPwd")){
+			params.put("custPwd", MD5Util.generatePassword(params.get("custPwd")));
+		}
+		if(params.containsKey("newPwd")){
+			params.put("newPwd", MD5Util.generatePassword(params.get("newPwd")));
+		}
+		
+		params.put("sysType", Constant.SYS_TYPE);
+		params.put("sysVersion", Constant.SYS_VERSIN);
+		params.put("appVersion", Utils.getVersion(mContext));
+		params.put("sysTerNo", Utils.getLocalIpAddress());
+		params.put("custId", MApplication.mSharedPref.getSharePrefString(SharedPrefConstant.CUSTID));
+		params.put("txnDate", Utils.getCurrentDate("yyMMdd"));
+		params.put("txnTime", Utils.getCurrentDate("HHmmss"));
+		//params.put("token", "");
+		JSONObject object = new JSONObject();
+		Gson gson = new Gson();
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		HashMap<String, Object> signMap = new HashMap<String, Object>();
+		signMap.put("SIGN", MD5Util.generatePassword(gson.toJson(params)));
+		
+		data.put("REQ_BODY", params);
+		data.put("REQ_HEAD", signMap);
+		RequestParams requestParams = new RequestParams();
+		requestParams.put("REQ_MESSAGE", gson.toJson(data));
+//		System.out.println("request-->REQ_MESSAGE="  + gson.toJson(data));
+		System.out.println("[RequestUrl]=="+Urls.ROOT_URL+url);
+		Logger.json("---[Request]---", gson.toJson(data));
+		mAsyncHttpClient.post(ctx, Urls.ROOT_URL+url, requestParams, handler);
+		
+	}
+}

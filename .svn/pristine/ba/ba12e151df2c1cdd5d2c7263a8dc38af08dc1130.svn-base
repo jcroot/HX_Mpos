@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/regBackGround"
+    android:orientation="vertical" >
+
+    <com.lk.td.pay.wedget.CommonTitleBar
+        android:id="@+id/titlebar_register"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleview_height"
+        android:orientation="vertical" >
+    </com.lk.td.pay.wedget.CommonTitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10.0dp"
+        android:layout_marginRight="8.0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_background_reg"
+        android:orientation="vertical"
+        android:padding="8.0dip" >
+
+        <com.lk.td.pay.wedget.EditTextWithClear
+            android:id="@+id/et_register_user_pwd"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/reg_input_height"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/selector_input_reg"
+            android:focusableInTouchMode="true"
+            android:gravity="left|center"
+            android:hint="@string/enter_user_pwd"
+            android:password="true"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:textColorHint="@color/grayline" >
+        </com.lk.td.pay.wedget.EditTextWithClear>
+
+        <com.lk.td.pay.wedget.EditTextWithClear
+            android:id="@+id/et_register_user_pwd_again"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/reg_input_height"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/selector_input_reg"
+            android:gravity="left|center"
+            android:hint="@string/enter_user_pwd_again"
+            android:imeActionLabel="@string/register"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:textColorHint="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10" >
+
+            <com.lk.td.pay.wedget.EditTextWithClear
+                android:visibility="gone"
+                android:id="@+id/et_register_referrer"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/reg_input_height"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_input_reg"
+                android:gravity="left|center"
+                android:hint="请输入推荐码"
+                android:imeActionLabel="推荐人"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textColorHint="@color/grayline" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_register_contact"
+                android:layout_weight="8.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/contact64" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register_confirm"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/reg_btn_next_height"
+        android:layout_gravity="center"
+        android:layout_margin="10.0dip"
+        android:background="@drawable/selector_next_normal"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large" />
+
+</LinearLayout>

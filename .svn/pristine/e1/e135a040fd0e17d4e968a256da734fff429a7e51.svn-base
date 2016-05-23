@@ -1,0 +1,280 @@
+package com.lk.td.pay.activity.swing;
+
+import java.util.HashMap;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.lk.td.pay.activity.BaseActivity;
+import com.lk.td.pay.activity.ShowMsgActivity;
+import com.lk.td.pay.beans.BasicResponse;
+import com.lk.td.pay.beans.CardBalance;
+import com.lk.td.pay.beans.PosData;
+import com.lk.td.pay.golbal.Urls;
+import com.lk.td.pay.tool.Logger;
+import com.lk.td.pay.tool.MyHttpClient;
+import com.lk.td.pay.tool.T;
+import com.lk.td.pay.utils.AmountUtils;
+import com.lk.td.pay.utils.PinDes;
+import com.lk.td.pay.utils.Utils;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.td.app.pay.hx.R;
+import com.whty.tymposapi.DeviceApi;
+
+
+public class CardBalanceConfirmActivity extends BaseActivity implements OnClickListener {
+
+    private TextView cardNoText;
+    private EditText cardPwdEdit;
+    private String cardPwd;
+    private Context mContext;
+    private LinearLayout ll_display;
+    private DeviceApi deviceApi;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.balance_confirm);
+        mContext = this;
+        init();
+    }
+
+    private void init() {
+        deviceApi = new DeviceApi(getApplicationContext());
+        cardNoText = (TextView) findViewById(R.id.cashin_card_no_text);
+        cardPwdEdit = (EditText) findViewById(R.id.cash_bank_pwd_edit);
+        cardNoText.setText(Utils.hiddenCardNo(PosData.getPosData().getCardNo()));
+
+        findViewById(R.id.btn_back).setOnClickListener(this);
+        findViewById(R.id.balance_confirm_btn).setOnClickListener(this);
+        ll_display = (LinearLayout) findViewById(R.id.ll_display);
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.balance_confirm_btn:
+
+
+                cardPwd = cardPwdEdit.getText().toString().trim();
+                if (TextUtils.isEmpty(cardPwd)) {
+                    showDialog(getResources().getString(R.string.inputbankCardPwd));
+                } else if (cardPwd.length() != 6) {
+                    showDialog("银行卡密码长度应为6位数");
+                } else {
+//					if (deviceApi.isConnected()) {
+//						goPay("");
+//					}else {
+                    downloadPineky();
+//					}
+                }
+
+
+                break;
+            case R.id.btn_back:
+                finish();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void downloadPineky() {
+        //终端签到
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("termNo", PosData.getPosData().getBluetoothTermNo());
+        params.put("termType", PosData.getPosData().getTermType());
+        MyHttpClient.post(this, Urls.BLUETOOTH_SIGN, params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers,
+                                          byte[] responseBody) {
+                        try {
+                            BasicResponse re = new BasicResponse(responseBody).getResult();
+                            if (re.isSuccess()) {
+                                String pinkey = re.getJsonBody().optString("zpinkey");
+                                goPay(pinkey);
+                            } else {
+                                showDialog(re.getMsg());
+                            }
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers,
+                                          byte[] responseBody, Throwable error) {
+                        networkError(statusCode, error);
+                    }
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        showLoadingDialog();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissLoadingDialog();
+                    }
+                });
+    }
+
+    private void goPay(String pinkey) {
+        try {
+
+//			if(deviceApi.isConnected()) {
+//				cardPwd = deviceApi.getEncPinblock(cardPwd);
+//			}else {
+            cardPwd = PinDes.pinResultMak(PinDes.ZMK, pinkey, PosData.getPosData().getCardNo(), cardPwd);
+//			}
+        } catch (Exception e) {
+
+        }
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("termNo", PosData.getPosData().getBluetoothTermNo());
+        System.out.println(PosData.getPosData().getBluetoothTermNo() + "_________________________");
+        params.put("termType", PosData.getPosData().getTermType());
+        params.put("track", PosData.getPosData().getTrack());
+        params.put("pinblk", cardPwd);
+        params.put("random", PosData.getPosData().getRandom());
+        params.put("mediaType", PosData.getPosData().getMediaType());
+        params.put("period", PosData.getPosData().getPeriod());
+        params.put("icdata", PosData.getPosData().getIcdata());
+        params.put("crdnum", PosData.getPosData().getCrdnum());
+        params.put("mac", "");
+        MyHttpClient.post(mContext, Urls.CARD_QUERY,
+                params, new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers,
+                                          byte[] responseBody) {
+                        Logger.json(responseBody);
+                        try {
+                            PosData.getPosData().clearPosData();
+                            CardBalance r = new CardBalance(responseBody).getResult();
+                            Intent it = new Intent(mContext, ShowMsgActivity.class);
+                            it.setAction("ACTION_CARD_QUERY");
+                            if (r.isSuccess()) {
+                                String tempBalance = r.getBalance();
+                                tempBalance = AmountUtils.changeFen2Yuan(tempBalance);
+                                it.putExtra("code", true);
+                                it.putExtra("msg", tempBalance + "元");
+                            } else {
+                                it.putExtra("code", false);
+                                it.putExtra("msg", r.getMsg());
+                            }
+                            startActivity(it);
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showDialog("数据解析失败");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers,
+                                          byte[] responseBody, Throwable error) {
+                        networkError(statusCode, error);
+
+                    }
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        showLoadingDialog();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissLoadingDialog();
+                    }
+                });
+    }
+
+    private void yuMeiBluetoothgoPay() {
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("termNo", PosData.getPosData().getBluetoothTermNo());
+        params.put("termType", PosData.getPosData().getTermType());
+        params.put("track", PosData.getPosData().getTrack());
+        params.put("pinblk", PosData.getPosData().getPinblk());
+        params.put("random", PosData.getPosData().getRandom());
+        params.put("mediaType", PosData.getPosData().getMediaType());
+        params.put("period", PosData.getPosData().getPeriod());
+        params.put("icdata", PosData.getPosData().getIcdata());
+        params.put("crdnum", PosData.getPosData().getCrdnum());    //卡片序列号
+        params.put("mac", "");
+        MyHttpClient.post(mContext, Urls.CARD_QUERY,
+                params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers,
+                                          byte[] responseBody) {
+                        Logger.json(responseBody);
+                        try {
+                            PosData.getPosData().clearPosData();
+                            CardBalance r = new CardBalance(responseBody).getResult();
+                            Intent it = new Intent(mContext, ShowMsgActivity.class);
+                            it.setAction("ACTION_CARD_QUERY");
+                            if (r.isSuccess()) {
+                                String tempBalance = r.getBalance();
+                                it.putExtra("code", true);
+                                it.putExtra("msg", tempBalance + "元");
+                            } else {
+                                it.putExtra("code", false);
+                                it.putExtra("msg", r.getMsg());
+                            }
+
+                            startActivity(it);
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showDialog("数据解析失败");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers,
+                                          byte[] responseBody, Throwable error) {
+                        //if(responseBody.length<1)
+                        networkError(statusCode, error);
+                    }
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        showLoadingDialog();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissLoadingDialog();
+                    }
+                });
+
+    }
+
+}
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tabs="http://schemas.android.com/apk/res/com.td.app.pay.hx"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<LinearLayout android:orientation="horizontal" android:id="@+id/linear_icon_back" android:background="@drawable/title_bar_reg" android:layout_width="fill_parent" android:layout_height="@dimen/reg_title_height">
+    	<Button android:gravity="left|center" android:id="@+id/btn_back" android:background="@null" android:layout_width="44.0dip" android:layout_height="fill_parent" android:drawableRight="@drawable/pic_title" />
+    	<TextView android:textSize="@dimen/medium" android:textColor="@color/white" android:gravity="center" android:id="@+id/tv_title" android:layout_width="wrap_content" android:layout_height="@dimen/reg_title_height" android:layout_marginLeft="6.0dip" android:text="@string/app_name" />
+	</LinearLayout>
+    <RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" >
+    <com.lk.td.pay.wedget.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+		tabs:pstsShouldExpand="true"
+        tabs:pstsUnderlineHeight="1dp"
+        tabs:pstsIndicatorHeight="5dp"
+        tabs:pstsDividerColor="@android:color/darker_gray"
+	    tabs:pstsTabBackground="@drawable/background_tab"
+	   	android:background="@android:color/white" />
+	<android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs" />
+
+</RelativeLayout>
+
+</LinearLayout>

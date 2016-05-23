@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_title"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:id="@+id/panel_realname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_normal_click_bg"
+            android:orientation="horizontal"
+            android:weightSum="10" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="实名认证"
+                android:textColor="#616161"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_realname_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:drawableRight="@drawable/right32"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text=""
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp" />
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="50dp" />
+
+        <LinearLayout
+            android:id="@+id/panel_posbind"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_normal_click_bg"
+            android:orientation="horizontal"
+            android:weightSum="10" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="刷卡器绑定"
+                android:textColor="#616161"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_posbind_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:drawableRight="@drawable/right32"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text=""
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp" />
+
+        <TextView
+            android:id="@+id/authentication_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_bound_pos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text=""
+            android:textColor="@color/red" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="说明："
+            android:textColor="@color/orange"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:text="       用户注册后需要进行实名认证、绑定刷卡头的操作。\n       实 名 认 证 ：用户需按要求上传四张照片。\n       绑定刷卡头：绑定前需要确定该用户和刷卡器都没有绑定过，绑定过程中需保持刷卡器已经插入手机孔，设定过程中有一次刷卡的操作，但不会收取任何费用。"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
+</LinearLayout>

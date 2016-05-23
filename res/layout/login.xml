@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/td_app_logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical" >
+
+        <com.lk.td.pay.wedget.EditTextWithClear
+            android:id="@+id/et_login_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/iconfont_my"
+            android:drawablePadding="10dp"
+            android:hint="手机号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:text="" />
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp" />
+
+        <com.lk.td.pay.wedget.EditTextWithClear
+            android:id="@+id/et_login_user_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/iconfont_lock"
+            android:drawablePadding="10dp"
+            android:hint="登录密码"
+            android:maxLength="15"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:password="true"
+            android:text="" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_login_to_find_pwd"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tb_login_remember_user_name"
+            android:text="忘记密码"
+            android:textColor="#777779"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" >
+
+        <Button
+            android:id="@+id/btn_login_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_nextstep"
+            android:text="登录"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+package com.lk.td.pay.activity;
+
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.lk.td.pay.wedget.CommonTitleBar;
+import com.td.app.pay.hx.R;
+
+public class VersionInfoActivity extends BaseActivity {
+
+    private TextView tvVersionNo;
+    private CommonTitleBar title;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.version_info);
+        tvVersionNo = (TextView) findViewById(R.id.tv_version_info_no);
+        tvVersionNo.setText("V" + getVersion());
+        title = (CommonTitleBar) findViewById(R.id.titlebar_version);
+        title.setActName("版本信息");
+        title.setCanClickDestory(this, true);
+    }
+
+    private String getVersion() {
+        try {
+            PackageManager manager = getPackageManager();
+            PackageInfo info = manager.getPackageInfo(getPackageName(), 0);
+            String version = info.versionName;
+            return version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+}

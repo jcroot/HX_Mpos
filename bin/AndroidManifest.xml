@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.td.app.pay.hx"
+    android:versionCode="3"
+    android:versionName="2.61" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:name="com.lk.td.pay.golbal.MApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.lk.td.pay.activity.account.login.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        
+        <activity
+            android:name="com.lk.td.pay.activity.account.bind.equip.ChooseDeviceActivityBaiFu"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.lk.td.pay.activity.account.login.LoginActivity"
+            android:screenOrientation="portrait" />
+         <activity
+            android:name="com.lk.td.pay.activity.account.login.LoginServerChooseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.more.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.more.HelpDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.more.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.more.ProtocolActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.bind.equip.EquipmentManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.CashInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.login.MobileVerifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.login.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.more.VersionInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.MainTabActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.pwd.PwdManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.info.AccountInfoActivity"
+            android:label="@string/title_activity_account_info" >
+        </activity>
+        <activity
+            android:name="com.lk.td.pay.activity.account.pwd.PwdReviseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.pwd.FindPwdActivity"
+            android:screenOrientation="portrait" />
+      
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.LDWriteSignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.notice.NoticeActivity"
+            android:label="@string/title_activity_notice" >
+        </activity>
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.SwingHXCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.BindAudioDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.auth.BankCardListActivity"
+            android:screenOrientation="portrait" />
+         <activity
+            android:name="com.lk.td.pay.activity.account.auth.BankbranchActivity"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.lk.td.pay.activity.account.trade.TradeListActivity"
+            android:label="@string/title_activity_trade_list" >
+        </activity>
+        <activity
+            android:name="com.lk.td.pay.activity.WithdrawActivity"
+            android:label="@string/title_activity_withdraw" >
+        </activity>
+        <activity
+            android:name="com.lk.td.pay.activity.account.auth.RealNameAuthenticationActivity"
+            android:configChanges="keyboardHidden|navigation|screenSize|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.SignaturePadActivity"
+            android:configChanges="keyboardHidden|orientation|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.CardBalanceConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.CashInConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.lk.td.pay.activity.account.trade.SalesSlipActivity" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.ShowMsgActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.notice.NoticeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.info.AccountWithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.bind.bank.BindBankCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.wedget.MyDialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_activity" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.EquAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.bind.equip.EquAddConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.account.bind.equip.EquListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.wedget.calendar.CalendarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.ProfitQueryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.DevicePayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.WithdrawDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.lk.td.pay.activity.account.trade.SelectTimeActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 银行卡扫描  -->
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.scan.BankScanCamera"
+            android:screenOrientation="landscape"
+             >
+            <intent-filter>
+                <action android:name="etop.bank.scan_camera" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.scan.BankCardShowResultActivity"
+            android:screenOrientation="portrait"  >
+        </activity>
+
+
+
+        
+        
+        <!-- 新大陆刷卡器  音频-->
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.xdl.BindXDLAudioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.xdl.SwingCardByXDLAudioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.xdl.SwingXDLCardBalanceActivity"
+            android:screenOrientation="portrait" />
+         <!-- 新大陆刷卡器  蓝牙-->
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.CheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.xdl.bluetootch.SwingCardByXDLBluetootchActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 天喻刷卡器  蓝牙-->
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.ty.bluetooth.CheckTYActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lk.td.pay.activity.main.cashin.swing.ty.bluetooth.SwingCardByTYBluetootchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.lk.td.pay.activity.main.quickpay.BankSelectActivity"
+            android:screenOrientation="portrait"
+            />
+
+        
+        
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+        
+        <service android:name="bt.fsk.BlueConnService" />
+        <receiver android:name="bt.fsk.BluetoothConnectActivityReceiver" >
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.PAIRING_REQUEST" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- 百度定位sdk -->
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
+        <!-- key:开发者申请的key -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="KVzYVBMFAgxpG9qZNSXBfY11" />
+
+
+    </application>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- 获取机型信息权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <!-- 新大陆刷卡器 -->
+    <uses-feature android:name="android.hardware.usb.host" /> 
+
+	
+</manifest>

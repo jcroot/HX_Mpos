@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboardlayout"
+    android:visibility="gone"
+    android:background="#ff202020"
+    android:layout_gravity="bottom"
+    android:gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+	<TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:text="汇鑫支付安全键盘"
+            android:textSize="18sp"/>
+        <android.inputmethodservice.KeyboardView
+	        android:id="@+id/keyboardview"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#ff202020" 
+        	android:keyBackground="@drawable/btn_keyboard_key" 
+        	android:keyTextColor="#FFFFFF"
+	        android:focusable="true"
+	        android:focusableInTouchMode="true"/>
+
+</LinearLayout>

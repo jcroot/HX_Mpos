@@ -1,0 +1,334 @@
+package com.lk.td.pay.activity.scan;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.lk.td.pay.activity.BaseActivity;
+import com.lk.td.pay.activity.CashInConfirmActivity;
+import com.lk.td.pay.activity.MainTabActivity;
+import com.lk.td.pay.activity.ShowMsgActivity;
+import com.lk.td.pay.beans.BasicResponse;
+import com.lk.td.pay.beans.PosData;
+import com.lk.td.pay.fragment.MainFragment;
+import com.lk.td.pay.golbal.Urls;
+import com.lk.td.pay.tool.Logger;
+import com.lk.td.pay.tool.MyHttpClient;
+import com.lk.td.pay.utils.BitmapUtil;
+import com.lk.td.pay.utils.FileUtil;
+import com.lk.td.pay.utils.ImageUtils;
+import com.lk.td.pay.utils.StringUtils;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.td.app.pay.hx.R;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+
+import java.io.File;
+import java.util.HashMap;
+
+/**
+ * Created by zhenglibin on 16/3/3.
+ */
+public class BankCardShowResultActivity extends BaseActivity implements View.OnClickListener {
+
+//    private static final int resultBitmapOfW = 400;
+//    private static final int resultBitmapOfH = 80;
+
+    private final int ADD_ID_CARD = 101;
+    private ImageView cardNo;
+    private EditText edt_card_no;
+    private Button btn_back;
+    private Button btn_re_scan;
+    private Button btn_edit;
+    private Button btn_commit;
+    private int resultBitmapArray[];
+    private int BankAPP;
+    private String placeActivity;
+    private String CountStrs;
+    private String bankCardImage;
+    private int success;
+    private char[] results;
+    private String mCard;
+
+    private Bitmap ResultBitmap;
+
+    private Boolean flag = false;
+
+    private String scanornot = "1";
+    private String type;
+    private boolean addImage = false;
+    private boolean saveImage = true;
+    private boolean firstCamera = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_bank_card_show_result);
+        initData();
+        initView();
+        setData();
+        judgeCamera();
+    }
+
+    private void judgeCamera() {
+        if (bankCardImage.isEmpty() && bankCardImage.length() == 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle("温馨提示")
+                    .setMessage("扫描银行卡已超时，请拍摄上传银行卡照片")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            takePicture(ADD_ID_CARD, mCard);
+                            dialog.dismiss();
+                        }
+                    }).setCancelable(false)
+                    .create().show();
+        }
+    }
+
+    private void initData() {
+        Intent intent = getIntent();
+        resultBitmapArray = intent.getIntArrayExtra("PicR");
+        results = intent.getCharArrayExtra("StringR");
+        success = intent.getIntExtra("Success", 0);
+        BankAPP = intent.getIntExtra("BankAPP", -1);
+        type = intent.getStringExtra("TYPE");
+        placeActivity = intent.getStringExtra("Action");
+        CountStrs = intent.getStringExtra("CountStrs");
+        bankCardImage = intent.getStringExtra("bankCardImage");
+    }
+
+    private void initView() {
+        cardNo = (ImageView) this.findViewById(R.id.iv_bank_card);
+        if (bankCardImage.isEmpty() && bankCardImage.length() == 0)
+            cardNo.setOnClickListener(this);
+        edt_card_no = (EditText) this.findViewById(R.id.edt_card_no);
+        edt_card_no.setKeyListener(null);
+        btn_re_scan = (Button) this.findViewById(R.id.btn_re_scan);
+        btn_re_scan.setOnClickListener(this);
+        btn_edit = (Button) this.findViewById(R.id.btn_edit);
+        btn_edit.setOnClickListener(this);
+        btn_commit = (Button) this.findViewById(R.id.btn_commit);
+        btn_commit.setOnClickListener(this);
+        btn_back = (Button) this.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
+
+        mCard = FileUtil.getTdPath(this) + "mCard.jpg";
+    }
+
+    private void setData() {
+        if (results != null) {
+            String resultS = String.valueOf(results).trim();
+            edt_card_no.setText(resultS);
+        }
+//        if (resultBitmapArray != null) {
+//            ResultBitmap = Bitmap.createBitmap(resultBitmapArray, resultBitmapOfW, resultBitmapOfH,
+//                    Bitmap.Config.ARGB_8888);
+//            cardNo.setImageBitmap(ResultBitmap);
+//        }
+
+        if (bankCardImage != null && !bankCardImage.isEmpty()) {
+            ResultBitmap = BitmapFactory.decodeFile(bankCardImage);
+            cardNo.setImageBitmap(ResultBitmap);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (ResultBitmap != null) {
+            ResultBitmap.recycle();
+            ResultBitmap = null;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_bank_card:
+                takePicture(ADD_ID_CARD, mCard);
+                break;
+            case R.id.btn_back:
+                finish();
+                break;
+            case R.id.btn_re_scan:
+                Intent intentTack = new Intent(BankCardShowResultActivity.this, BankScanCamera.class);
+                intentTack.putExtra("BankAPP", 10011);
+                startActivity(intentTack);
+                finish();
+                break;
+            case R.id.btn_edit:
+                System.out.println("开启软键盘");
+                scanornot = "2";
+                edt_card_no.setFocusable(true);
+                edt_card_no.setFocusableInTouchMode(true);
+                edt_card_no.requestFocus();
+                edt_card_no.setSelection(edt_card_no.getText().length());
+                edt_card_no.setInputType(InputType.TYPE_CLASS_NUMBER);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                break;
+            case R.id.btn_commit:
+                CharSequence cardnum = edt_card_no.getText();
+                if (TextUtils.isEmpty(cardnum)) {
+                    Toast.makeText(BankCardShowResultActivity.this, "请重新扫描银行卡或者手动输入卡号", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if (StringUtils.isEmpty(bankCardImage)) {
+                    Toast.makeText(BankCardShowResultActivity.this, "请重新扫描银行卡或者手动输入卡号", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                uploadImage(PosData.getPosData().getPrdordNo(), bankCardImage, cardnum.toString(), scanornot);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String pathStr = null;
+//        if (requestCode == ADD_ID_CARD && resultCode == RESULT_OK) {
+        if (requestCode == ADD_ID_CARD && resultCode == RESULT_OK) {
+            setBitmapToImageView(mCard, cardNo, 1);
+            pathStr = mCard;
+            addImage = true;
+        }
+
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        try {
+            showLoadingDialog();
+            ImageUtils.saveFile(pathStr, 800, 640);
+            dismissLoadingDialog();
+        } catch (Exception e) {
+            Toast.makeText(BankCardShowResultActivity.this, "保存图片失败", Toast.LENGTH_SHORT).show();
+            saveImage = false;
+            e.printStackTrace();
+        }
+        if (saveImage) {
+            bankCardImage = mCard;
+        }
+    }
+
+    /**
+     * 给imageView设置Bitmap
+     *
+     * @param imagePath
+     * @param iamgeView
+     * @param w
+     * @param
+     */
+    private void setBitmapToImageView(String imagePath, ImageView iamgeView, int w) {
+        Bitmap tempValue = BitmapUtil.resizeImageSecondMethod(imagePath, iamgeView.getWidth(), iamgeView.getHeight());
+        iamgeView.setImageBitmap(tempValue);
+        iamgeView.setLayoutParams(new LinearLayout.LayoutParams(iamgeView.getWidth(), iamgeView.getHeight()));
+
+    }
+
+    /**
+     * 拍照
+     *
+     * @param code
+     */
+    private void takePicture(int code, String filePath) {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        File f = new File(filePath);
+        Uri u = Uri.fromFile(f);
+        intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, u);
+        startActivityForResult(intent, code);
+    }
+
+    private void uploadImage(String prdordNo, final String signPath, final String cardnum, final String scanornot) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("prdordNo", prdordNo);
+        params.put("cardnum", cardnum);
+        MyHttpClient.post(BankCardShowResultActivity.this,
+                Urls.UPLOAD_BANK_CARD_IMAGE, params, signPath,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode,
+                                          Header[] headers, byte[] responseBody) {
+                        Logger.json("[===]", responseBody);
+                        try {
+                            BasicResponse r = new BasicResponse(
+                                    responseBody).getResult();
+                            if (r.isSuccess()) {
+                                if (!TextUtils.isEmpty(type)) {
+                                    if (type.equals("1")) {
+                                        startActivity(new Intent(
+                                                        BankCardShowResultActivity.this,
+                                                        CashInConfirmActivity.class)
+                                                        .setAction(CashInConfirmActivity.ACTION_CASH_IN)
+                                                        .putExtra("scanornot", scanornot)
+                                                        .putExtra("scancardnum", cardnum)
+                                        );
+                                    } else {
+                                        startActivity(new Intent(
+                                                BankCardShowResultActivity.this,
+                                                MainTabActivity.class));
+                                    }
+                                }
+                                File file = new File(signPath);
+                                if (file.exists()) {
+                                    file.delete();
+                                }
+                                Toast.makeText(BankCardShowResultActivity.this, r.getMsg(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Intent it = new Intent(BankCardShowResultActivity.this,
+                                        ShowMsgActivity.class);
+                                it.setAction("ACTION_CASH_IN");
+                                it.putExtra("code", r.isSuccess());
+                                it.putExtra("msg", r.getMsg());
+                                startActivity(it);
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            // TODO 自动生成的 catch 块
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode,
+                                          Header[] headers, byte[] responseBody,
+                                          Throwable error) {
+                        networkError(statusCode, error);
+                    }
+
+                    @Override
+                    public void onStart() {
+                        // TODO Auto-generated method stub
+                        super.onStart();
+                        showLoadingDialog("正在上传银行卡照片...");
+                    }
+
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissLoadingDialog();
+                    }
+                });
+    }
+}

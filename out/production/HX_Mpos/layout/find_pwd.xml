@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/regBackGround"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_title"></include>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8.0dp"
+        android:background="@drawable/white_background_reg"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            style="@style/mStyle.reg_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/new_pwd" />
+
+        <EditText
+            android:id="@+id/et_pw1"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/reg_input_height"
+            android:background="@drawable/selector_input_reg"
+            android:gravity="left|center"
+            android:hint="@string/inputPassWord"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColorHint="@color/grayline" />
+
+        <TextView
+            style="@style/mStyle.reg_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/confirmPassword" />
+
+        <EditText
+            android:id="@+id/et_pw2"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/reg_input_height"
+            android:background="@drawable/selector_input_reg"
+            android:hint="@string/inputSecondTime"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColorHint="@color/grayline" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/reg_btn_next_height"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="15.0dip"
+        android:background="@drawable/selector_next_normal"
+        android:text="@string/ok"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large" />
+
+</LinearLayout>

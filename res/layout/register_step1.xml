@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout android:background="@drawable/title_bar_reg" android:layout_width="fill_parent" android:layout_height="@dimen/reg_title_height">
+        <Button android:textSize="@dimen/medium" android:textColor="@color/white" android:gravity="center_vertical" android:id="@+id/btn_back" android:background="@drawable/selector_reg_back" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/register" />
+        <TextView
+            style="@style/mStyle.reg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:text="1/2" />
+    </RelativeLayout>
+    <ScrollView android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="-2.5dip" android:layout_weight="1.0">
+        <LinearLayout android:orientation="vertical" android:background="@color/regBackGround" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:layout_height="@dimen/reg_title_tvheight" android:layout_marginLeft="20dp" android:text="设置账号" style="@style/mStyle.blue12_left" />
+            <LinearLayout android:orientation="vertical" android:background="@drawable/white_background_reg" android:padding="8dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginRight="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="30dp" android:text="@string/phone_number" style="@style/mStyle.reg_content" />
+                <EditText 
+		            android:layout_marginTop="3dp"
+		            android:textColorHint="@color/grayline" 
+		            android:gravity="left|center" 
+		            android:id="@+id/et_username" 
+		            android:background="@drawable/selector_input_reg" 
+		            android:layout_width="fill_parent" 
+		            android:layout_height="@dimen/reg_input_height" 
+		            android:hint="@string/hintPhonenumber" 
+		            android:maxLength="11" 
+		            android:inputType="phone" />  
+		        <TextView android:layout_width="wrap_content" android:layout_height="30dp" android:text="@string/confirmationCode" style="@style/mStyle.reg_content" />            
+
+                <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <EditText android:textColorHint="@color/grayline" android:id="@+id/et_confirm_code" android:background="@drawable/selector_input_reg" android:layout_width="0.0dip" android:layout_height="@dimen/reg_input_height" android:hint="@string/hintInputCode" android:maxLength="6" android:layout_weight="1.0" android:inputType="number" />
+                        <Button android:ellipsize="end" android:gravity="center" android:id="@+id/btn_getconfirmation" android:background="@drawable/selector_get_verfiycode" android:layout_width="140.0dip" android:layout_height="wrap_content" android:text="@string/getConfirmationCode" android:singleLine="true" />
+                    </LinearLayout>                   
+                </LinearLayout>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="@dimen/reg_title_tvheight" android:layout_marginLeft="20dp" android:text="设置密码" style="@style/mStyle.blue12_left" />
+            <LinearLayout android:orientation="vertical" android:background="@drawable/white_background_reg" android:padding="10dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginRight="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="30dp" android:text="@string/setPassword" style="@style/mStyle.reg_content" />
+                <EditText android:textColorHint="@color/grayline" android:gravity="left|center" android:id="@+id/et_pw1" android:background="@drawable/selector_input_reg" android:layout_width="fill_parent" android:layout_height="@dimen/reg_input_height" android:hint="@string/inputPassWord" android:singleLine="true" android:maxLength="20" android:inputType="textPassword" />
+                <TextView android:layout_width="wrap_content" android:layout_height="30dp" android:text="@string/confirmPassword" style="@style/mStyle.reg_content" />
+                <EditText android:textColorHint="@color/grayline" android:id="@+id/et_pw2" android:background="@drawable/selector_input_reg" android:layout_width="fill_parent" android:layout_height="@dimen/reg_input_height" android:hint="@string/inputSecondTime" android:maxLength="20" android:inputType="textPassword" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button 
+        android:textSize="@dimen/large" 
+        android:textColor="@color/white" 
+        android:layout_gravity="center" 
+        android:id="@+id/btn_next" 
+        android:background="@drawable/selector_nextstep" 
+        android:layout_width="fill_parent" 
+        android:layout_height="@dimen/reg_btn_next_height" 
+        android:layout_marginLeft="8dp" 
+        android:layout_marginTop="10.0dip" 
+        android:layout_marginRight="8dp" 
+        android:layout_marginBottom="10.0dip" 
+        android:text="@string/next" />
+
+</LinearLayout>

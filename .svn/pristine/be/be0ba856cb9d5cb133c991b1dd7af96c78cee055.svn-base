@@ -1,0 +1,100 @@
+package com.lk.td.pay.activity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.webkit.WebView;
+import android.widget.TextView;
+
+import com.lk.td.pay.golbal.Urls;
+import com.lk.td.pay.tool.Logger;
+import com.lk.td.pay.tool.MyHttpClient;
+import com.lk.td.pay.tool.T;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.td.app.pay.hx.R;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+public class ProtocolActivity extends BaseFragmentActivity {
+
+//    private TextView contentText;
+    private WebView webView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_protocol);
+        findViewById(R.id.btn_back).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+        webView = (WebView) this.findViewById(R.id.web_view);
+//        contentText = (TextView) findViewById(R.id.protocol_content_text);
+//        contentText.setText(getString(R.string.service_agreement_content));
+//        initWebView(Urls.GET_AGREEMENT);
+        String url = Urls.GET_AGREEMENT;
+        initWebView(url);
+    }
+
+//    private void goProtocol() {
+//        HashMap<String, String> map = new HashMap<>();
+//        MyHttpClient.postWithoutDefault(this, Urls.GET_AGREEMENT, map,
+//                new JsonHttpResponseHandler() {
+//                    @Override
+//                    public void onSuccess(int statusCode, Header[] headers,
+//                                          JSONObject response) {
+//                        super.onSuccess(statusCode, headers, response);
+//                        Logger.json(response.toString());
+//                        try {
+//                            JSONObject obj = response.getJSONObject("REP_BODY");
+//                            if (obj.getString(
+//                                    com.lk.td.pay.beans.Entity.RSP_COD).equals(
+//                                    com.lk.td.pay.beans.Entity.RSP_SUCC)) {
+//                                JSONObject agreement = obj.optJSONObject("agreement");
+//                                JSONObject agreements = agreement.optJSONObject("agreement");
+//                                String fileUrl = agreements.optString("fileUrl");
+//                                initWebView(fileUrl);
+//                                finish();
+//                            } else {
+//                                T.sl("" + obj.optString("RSPMSG"));
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int statusCode, Header[] headers,
+//                                          String responseString, Throwable throwable) {
+//                        super.onFailure(statusCode, headers, responseString,
+//                                throwable);
+//                        networkError(statusCode, throwable);
+//                    }
+//
+//                    @Override
+//                    public void onStart() {
+//                        super.onStart();
+//                        showLoadingDialog();
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        super.onFinish();
+//                        dismissLoadingDialog();
+//                    }
+//                });
+//    }
+
+    private void initWebView(String url) {
+        webView.loadUrl(url);
+    }
+}

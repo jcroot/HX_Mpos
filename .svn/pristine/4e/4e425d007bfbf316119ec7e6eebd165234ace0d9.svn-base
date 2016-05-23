@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/regBackGround"
+    android:orientation="vertical" >
+    <RelativeLayout android:background="@drawable/title_bar_reg" android:layout_width="fill_parent" android:layout_height="@dimen/reg_title_height">
+        <Button android:textSize="@dimen/medium" android:textColor="@color/white" android:gravity="center_vertical" android:id="@+id/btn_back" android:background="@drawable/selector_reg_back" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="使用帮助" />       
+    </RelativeLayout>
+    <LinearLayout 
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent"
+	     android:padding="10dp">
+
+	     <ListView
+	         android:id="@+id/help_listview"
+	         android:background="@drawable/corners_bg"
+	         android:layout_width="match_parent"
+	         android:layout_height="wrap_content"
+	         android:scrollbars="none"
+	         android:layout_weight="1" >
+	     </ListView>
+	     
+	 </LinearLayout>
+
+</LinearLayout>

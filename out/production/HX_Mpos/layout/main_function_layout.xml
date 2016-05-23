@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp" />
+        <!-- 1 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_cash_in"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="手机收款"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                style="@style/common_line_vertical_style"
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent" />
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_aqaa"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="实时提现"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_phone_recharge"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="手机充值"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+        </LinearLayout>
+
+        <View
+            style="@style/common_line_horizontal_style"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp" />
+        <!-- 2 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_transfer"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="信用卡还款"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_query_balance"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="余额查询"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_lifefee"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="生活缴费"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+        </LinearLayout>
+
+        <!-- 下半部 -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_line" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_scenic_ticket"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="微汇鑫"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+
+
+
+            <com.lk.td.pay.wedget.SquareView
+                android:id="@+id/function_planee"
+                style="@style/function_service_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/fun_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/a10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="商旅助手"
+                    android:textSize="14sp" />
+            </com.lk.td.pay.wedget.SquareView>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_line" />
+    </LinearLayout>
+    <!--  -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.lk.td.pay.wedget.SquareView
+            android:id="@+id/function_team_travel"
+            style="@style/function_service_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                style="@style/fun_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shopping" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="商城购物"
+                android:textSize="14sp" />
+        </com.lk.td.pay.wedget.SquareView>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_line"
+            android:visibility="gone"/>
+
+        <com.lk.td.pay.wedget.SquareView
+            android:id="@+id/function_group_buy"
+            style="@style/function_service_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                style="@style/fun_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/a7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="汇鑫贷"
+                android:textSize="14sp" />
+        </com.lk.td.pay.wedget.SquareView>
+
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_line" />
+
+        <com.lk.td.pay.wedget.SquareView
+            android:id="@+id/function_life"
+            style="@style/function_service_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/fun_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/not_use" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="转账"
+                android:visibility="gone"
+                android:textSize="14sp" />
+        </com.lk.td.pay.wedget.SquareView>
+
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_line" />
+
+        <com.lk.td.pay.wedget.SquareView
+            android:id="@+id/function_sign"
+            style="@style/function_service_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                style="@style/fun_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/not_use" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="即时到账"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+        </com.lk.td.pay.wedget.SquareView>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_line" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_line"
+        android:visibility="invisible" />
+
+</LinearLayout>

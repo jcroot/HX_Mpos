@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >    
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="@dimen/titleview_height"
+	    > 
+	    <Button
+	        android:id="@+id/btn_upload_sign_clear"
+	        android:layout_width="50dp"
+	        android:layout_height="30dp"
+	        android:layout_marginLeft="12dp"
+	        android:layout_centerVertical="true"
+	        android:textSize="14dp"
+	        android:textColor="@color/white"
+	        android:gravity="center"
+	        android:background="@drawable/selector_next_normal"
+	        android:text="清除" />
+    <TextView
+        android:text="持卡人签名"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true" />
+    	<Button
+	        android:id="@+id/btn_upload_sign_ok"
+	        android:layout_width="50dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="12dp"
+	        android:textSize="14dp"
+	        android:textColor="@color/white"
+	        android:gravity="center"
+	        android:background="@drawable/selector_next_normal"
+	        android:text="上传" />
+	</RelativeLayout>
+	<FrameLayout
+        android:id="@+id/tablet_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </FrameLayout>   
+</LinearLayout>

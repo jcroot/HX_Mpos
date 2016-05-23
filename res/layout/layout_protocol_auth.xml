@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/regBackGround"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    >
+
+    <include layout="@layout/layout_title"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/white_background_reg"
+        android:layout_margin="@dimen/default_margin"
+        android:padding="@dimen/default_margin"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="银行卡号："
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                />
+            <TextView
+                android:id="@+id/tv_cardNo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="6217831203128765"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:paddingRight="@dimen/default_margin"
+                android:textColor="@color/color_font"
+                android:textSize="@dimen/font_size_default"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="银行卡CVV："
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                />
+            <TextView
+
+                android:id="@+id/tv_cvv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="123"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:paddingRight="@dimen/default_margin"
+                android:textColor="@color/color_font"
+                android:textSize="@dimen/font_size_default"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="有效期限："
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                />
+            <TextView
+                android:id="@+id/tv_period"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="21/12"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:paddingRight="@dimen/default_margin"
+                android:textColor="@color/color_font"
+                android:textSize="@dimen/font_size_default"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/white_background_reg"
+        android:layout_margin="@dimen/default_margin"
+        android:padding="@dimen/default_margin"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="身份证"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_cradNo"
+                style="@style/textView_check_style"
+                android:background="@drawable/selector_input_reg"
+                android:editable="false"
+                android:hint="身份证号码"
+                android:inputType="number"
+                android:maxLength="19"
+                android:singleLine="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="手机号"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_cradNo"
+                style="@style/textView_check_style"
+                android:background="@drawable/selector_input_reg"
+                android:digits="0123456789"
+                android:editable="false"
+                android:hint="手机号"
+                android:inputType="number"
+                android:maxLength="19"
+                android:singleLine="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <CheckBox
+                android:id="@+id/select_protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/selector_protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/default_height"
+                android:text="同意协议"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/font_size_default"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:textColor="@color/LKblue"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_protocol_next"
+        style="@style/style_btn"
+        android:layout_marginTop="@dimen/default_height"
+        android:text="@string/next"
+        android:layout_margin="@dimen/default_margin"
+
+        />
+</LinearLayout>
