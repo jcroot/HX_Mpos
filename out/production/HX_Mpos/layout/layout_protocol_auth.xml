@@ -118,7 +118,6 @@
                 android:id="@+id/et_cradNo"
                 style="@style/textView_check_style"
                 android:background="@drawable/selector_input_reg"
-                android:digits="0123456789"
                 android:editable="false"
                 android:hint="身份证号码"
                 android:inputType="number"
@@ -138,7 +137,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/et_cradNo"
+                android:id="@+id/et_Mobile"
                 style="@style/textView_check_style"
                 android:background="@drawable/selector_input_reg"
                 android:digits="0123456789"
@@ -149,6 +148,7 @@
                 android:singleLine="true" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/auth_protocol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

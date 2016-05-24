@@ -10,11 +10,11 @@ import android.content.Intent;
 
 import com.lk.td.pay.activity.account.login.LoginActivity;
 import com.lk.td.pay.golbal.MApplication;
+import com.lk.td.pay.request.ParamsUtils;
 import com.lk.td.pay.wedget.CustomDialog;
 import com.lk.td.pay.wedget.MyDialogActivity;
 
 public class BasicResponse implements Serializable {
-
 	/**
 	 * 
 	 */
@@ -35,13 +35,13 @@ public class BasicResponse implements Serializable {
 	public BasicResponse getResult() throws JSONException {
 		if (response != null) {
 			JSONObject obj = new JSONObject(new String(response))
-					.getJSONObject("REP_BODY");
+					.getJSONObject(ParamsUtils.RESULT_REP_BODY);
 			this.jsonBody = obj;
-			this.msg = obj.optString("RSPMSG");
-			if (obj.optString("RSPCOD").equals("000000")) {
+			this.msg = obj.optString(ParamsUtils.RESULT_RSPMSG);
+			if (obj.optString(ParamsUtils.RESULT_RSPCOD).equals("000000")) {
 
 				isSuccess = true;
-			} else if (obj.optString("RSPCOD").equals("888889")) {
+			} else if (obj.optString(ParamsUtils.RESULT_RSPCOD).equals("888889")) {
 				isSuccess = false;
 				// 长时间未操作超时
 				// MApplication.getInstance().getApplicationContext();
@@ -101,7 +101,7 @@ public class BasicResponse implements Serializable {
 //						}
 //					});
 				}
-			} else if (obj.optString("RSPCOD").equals("900001")){
+			} else if (obj.optString(ParamsUtils.RESULT_RSPCOD).equals("900001")){
 				isSuccess = false;
 				// MApplication.getInstance().getApplicationContext();
 				final Context ctx = MApplication.getInstance().getMainHomeContext();

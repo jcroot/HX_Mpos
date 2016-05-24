@@ -6,6 +6,8 @@ package com.lk.td.pay.request;
 public class ParamsUtils {
 
 
+    /*************************************请求参数************************************************/
+
     public static final String  CUST_MOBILE           = "custMobile";               //用户名/手机号码
 
     public static final String  CUST_PWD              = "custPwd";                  //密码
@@ -175,5 +177,17 @@ public class ParamsUtils {
     public static final String CARD_OUT               = "cardout";                  //转出卡号
 
     public static final String CARD_IN_UPPER          = "Cardin";                   //转入卡号
+
+    /****************************************返回参数*********************************************/
+
+    public static final String RESULT_REP_BODY        = "REP_BODY";                 //返回详细
+
+    public static final String RESULT_RSPMSG          = "RSPMSG";                   //消息
+
+    public static final String RESULT_RSPCOD          = "RSPCOD";                   //返回码
+
+
+
+
 
 }

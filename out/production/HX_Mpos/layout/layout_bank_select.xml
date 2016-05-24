@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/regBackGround"
+    android:id="@+id/select_bank"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title"></include>
@@ -105,7 +106,6 @@
                     android:id="@+id/et_period"
                     style="@style/textView_check_style"
                     android:background="@drawable/selector_input_reg"
-                    android:digits="0123456789"
                     android:editable="false"
                     android:hint="有效期限"
                     android:inputType="number"
@@ -130,9 +130,7 @@
                     android:id="@+id/et_cvv"
                     style="@style/textView_check_style"
                     android:background="@drawable/selector_input_reg"
-                    android:digits="0123456789"
                     android:editable="false"
-                    android:hint="123"
                     android:inputType="number"
                     android:maxLength="19"
                     android:singleLine="true" />
