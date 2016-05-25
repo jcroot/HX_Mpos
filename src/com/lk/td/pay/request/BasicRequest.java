@@ -31,7 +31,7 @@ public class BasicRequest{
     private static Message msg = new Message();
     private static MyDialog dialog;
 
-    public static void sendRequest(Context mContext,String  mUrl,HashMap<String, String> mParams, Handler handler){
+    public static void sendRequest(final Context mContext,final String  mUrl,HashMap<String, String> mParams, final Handler handler){
         MyHttpClient.post(mContext, mUrl, mParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {

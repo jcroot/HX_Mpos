@@ -12,13 +12,7 @@
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
       
     </style>
-    <style name="AppMenuTheme" parent="AppBaseTheme">
-        <!-- 设置无标题 -->
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
-      
-    </style>
+  
     
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">
 	     <item name="android:activityOpenEnterAnimation">@anim/activity_open_left_in</item>
@@ -112,29 +106,7 @@
         <item name="android:minWidth">40dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-
-    <style name="editview_style">
-        <item name="android:textSize">18sp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingLeft">5dp</item>
-        <item name="android:textColor">#777779</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
-        <item name="android:singleLine">true</item>
-    </style>
     <!-- 输入框 -->
-    <style name="et_input">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@drawable/shape_border_6corners</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:singleLine">true</item>
-    </style>
 
     <style name="tab_main_textview">
         <item name="android:gravity">center_horizontal</item>
@@ -150,10 +122,6 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
-    <style name="NoTitleDialog" parent="android:style/Theme.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/transparent</item>
-    </style>
 
     <style name="textview_title">
         <item name="android:textSize">20sp</item>
@@ -237,9 +205,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/btn_dialog</item>
         <item name="android:minHeight">40.0dip</item>
-    </style>
-    
-    <style name="Theme.Light.FullScreenDialogAct" parent="@style/BaseDialog">
+    </style><style name="Theme.Light.FullScreenDialogAct" parent="@style/BaseDialog">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -250,15 +216,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
-    <style name="pop_tradelist_textview">
-        <item name="android:background">@drawable/selector_pop_click</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">5dp</item>
-    </style>
+    
      <style name="weekName">
         <item name="android:layout_width">0.0dip</item>
         <item name="android:layout_height">wrap_content</item>
@@ -305,13 +263,6 @@
         <item name="android:textSize">@dimen/font_size_default</item>
     </style>
 
-    <style name="style_text" parent="style_btn">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/font_size_default</item>
-    </style>
-
 
     <style name="GridPasswordView" />
 
@@ -333,5 +284,28 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">1dp</item>
         <item name="android:layout_marginBottom">1dp</item>
+    </style>
+
+    <style name="style_text_item" parent="style_btn">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/color_font_item</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textSize">@dimen/font_size_default</item>
+    </style>
+    <style name="style_edit_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+    </style>
+
+    <style name="style_edit_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_item_edit_height</item>
+        <item name="android:background">@drawable/shape_edit_solid</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:paddingRight">@dimen/default_margin</item>
     </style>
 </resources>

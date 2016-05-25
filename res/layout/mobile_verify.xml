@@ -117,7 +117,7 @@
                 android:layout_height="@dimen/reg_btn_next_height"
                 android:layout_weight="1"
                 android:background="@drawable/selector_next_normal"
-                android:text="@string/next_step"
+                android:text="@string/next"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>

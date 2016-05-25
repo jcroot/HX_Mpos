@@ -195,7 +195,7 @@ public class LDWriteSignActivity extends BaseActivity implements
 			new CustomDialog.Builder(this)
 					.setTitle(getString(R.string.app_name))
 					.setMessage(mag)
-					.setOkBtn(getString(R.string.confirm),
+					.setOkBtn(getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,

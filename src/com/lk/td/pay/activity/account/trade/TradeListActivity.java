@@ -334,7 +334,7 @@ public class TradeListActivity extends BaseActivity implements OnClickListener {
 
     public void initPopwindow() {
 
-        pop = new CustomPopupWindow(TradeListActivity.this, popupData, new OnItemClickListener() {
+        pop = new CustomPopupWindow(TradeListActivity.this, popupData,"",  new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 

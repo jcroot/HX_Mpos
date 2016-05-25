@@ -72,4 +72,7 @@
     <item name="gray_holo_light" type="color">#ffd0d0d0</item>
 
     <color name="color_font">#5381F7</color>
+    <color name="color_font_item">#878787</color>
+
+
 </resources>

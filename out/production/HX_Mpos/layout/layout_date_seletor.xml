@@ -4,52 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:layout_marginRight="@dimen/default_margin"
         >
-        <com.lk.td.pay.wedget.wheelview.WheelView
-            android:id="@+id/wheel_year"
+        <com.lk.td.pay.wedget.wheelview.view.CycleWheelView
+            android:id="@+id/cycle_year"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            />
-        <com.lk.td.pay.wedget.wheelview.WheelView
-            android:id="@+id/wheel_month"
-            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:fadingEdge="none"
+            android:scrollbars="none"
             />
-
-        <com.lk.td.pay.wedget.wheelview.WheelView
-            android:id="@+id/wheel_day"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            />
-
-        <com.lk.td.pay.wedget.wheelview.WheelView
-            android:id="@+id/wheel_hour"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <View
+            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:background="@color/lightgray"
             />
-
-        <com.lk.td.pay.wedget.wheelview.WheelView
-            android:id="@+id/wheel_mins"
+        <com.lk.td.pay.wedget.wheelview.view.CycleWheelView
+            android:id="@+id/cycle_month"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:layout_weight="1"
+            android:fadingEdge="none"
+            android:scrollbars="none"
             />
     </LinearLayout>
 </LinearLayout>

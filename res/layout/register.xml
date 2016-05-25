@@ -40,7 +40,7 @@
             android:layout_marginTop="3dp"
             android:background="@drawable/selector_input_reg"
             android:gravity="left|center"
-            android:hint="@string/enter_user_pwd_again"
+            android:hint="@string/confirm_pwd"
             android:imeActionLabel="@string/register"
             android:inputType="textPassword"
             android:maxLength="15"

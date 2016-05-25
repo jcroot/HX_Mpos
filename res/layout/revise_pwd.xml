@@ -56,7 +56,7 @@
             style="@style/mStyle.reg_content"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:text="@string/confirmPassword" />
+            android:text="@string/confirm_pwd" />
 
         <EditText
             android:id="@+id/new_pwda_edit"

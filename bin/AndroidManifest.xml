@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.td.app.pay.hx"
     android:versionCode="3"
-    android:versionName="2.61" >
+    android:versionName="2.70" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -75,7 +75,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.lk.td.pay.activity.account.info.AccountInfoActivity"
-            android:label="@string/title_activity_account_info" >
+             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.lk.td.pay.activity.account.pwd.PwdReviseActivity"
@@ -89,7 +89,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.lk.td.pay.activity.main.notice.NoticeActivity"
-            android:label="@string/title_activity_notice" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.lk.td.pay.activity.main.cashin.swing.SwingHXCardActivity"
@@ -106,11 +106,11 @@
         
         <activity
             android:name="com.lk.td.pay.activity.account.trade.TradeListActivity"
-            android:label="@string/title_activity_trade_list" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.lk.td.pay.activity.WithdrawActivity"
-            android:label="@string/title_activity_withdraw" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.lk.td.pay.activity.account.auth.RealNameAuthenticationActivity"
@@ -221,8 +221,13 @@
         <activity android:name="com.lk.td.pay.activity.main.quickpay.BankSelectActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name="com.lk.td.pay.activity.main.quickpay.BankInfoActivity"
+            android:screenOrientation="portrait"
+            />
 
-        
+        <activity android:name="com.lk.td.pay.activity.main.quickpay.QuickPayActvity"
+            android:screenOrientation="portrait"
+            />
         
         <service
             android:name="com.baidu.location.f"

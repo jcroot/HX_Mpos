@@ -620,7 +620,7 @@ public class EquAddActivity extends BaseActivity {
 			} else if (displayText == DisplayText.CARD_ERROR) {
 				msg = getString(R.string.card_error);
 			} else if (displayText == DisplayText.DECLINED) {
-				msg = getString(R.string.decline);
+				msg = getString(R.string.declined);
 			} else if (displayText == DisplayText.ENTER_AMOUNT) {
 				msg = getString(R.string.enter_amount);
 			} else if (displayText == DisplayText.ENTER_PIN) {

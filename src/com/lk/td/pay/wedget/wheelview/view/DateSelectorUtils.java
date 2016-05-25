@@ -1,95 +1,111 @@
 package com.lk.td.pay.wedget.wheelview.view;
 
 import android.app.Activity;
-import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.lk.td.pay.request.BasicRequest;
-import com.lk.td.pay.utils.DensityUtil;
-import com.lk.td.pay.wedget.CustomPopupWindow;
-import com.lk.td.pay.wedget.wheelview.NumericWheelAdapter;
-import com.lk.td.pay.wedget.wheelview.OnWheelChangedListener;
-import com.lk.td.pay.wedget.wheelview.WheelView;
 import com.td.app.pay.hx.R;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by wsq on 2016/5/24.
  */
 public class DateSelectorUtils {
 
-    private static int START_YEAR = 1700,END_YEAR=2700;
-    private static int START_MONTH = 1, END_MONTH =12;
-    public static int SELECTOR_YEAR = 0;
-    public static int SELECTOR_MONTH = 0;
+    private static int START_YEAR = 1700,END_YEAR=2500;
+    public static String SELECTOR_YEAR = "0";
+    public static String SELECTOR_MONTH = "0";
 
-    private static final int WHEELVIEW_YEAR_ID = 0x010001;
-    private static final int WHEELVIEW_MONTH_ID = 0x010002;
-    private static final int WHEELVIEW_DAY_ID = 0x010003;
-    private static final int WHEELVIEW_HOUR_ID = 0x010004;
-    private static Date date ;
-    // 添加大小月月份并将其转换为list,方便之后的判断
-//    String[] months_big = { "1", "3", "5", "7", "8", "10", "12" };
-//    String[] months_little = { "4", "6", "9", "11" };
+    private static List<String> yearDate = new ArrayList<String>();
+    private static List<String> monthDate = new ArrayList<String>();
 
 
-    public static View  showDateSelector(Activity context){
+
+
+
+    public static View showDateSelector(Activity context){
+
+        addDate();
+
         Calendar calendar =Calendar.getInstance();
-        date = new Date(System.currentTimeMillis());
         View view  = LayoutInflater.from(context).inflate(R.layout.layout_date_seletor, null);
-        //设置年份
-        WheelView wy = (WheelView) view.findViewById(R.id.wheel_year);
 
-        wy.setAdapter(new NumericWheelAdapter(START_YEAR, END_YEAR));
-        wy.setCyclic(true);
-        wy.setVisibleItems(5);
-        wy.setLabel("年");
-        wy.setId(WHEELVIEW_YEAR_ID);
+        CycleWheelView cycle_year = (CycleWheelView) view.findViewById(R.id.cycle_year);
 
-        SELECTOR_YEAR = calendar.get(Calendar.YEAR);
-        wy.setCurrentItem(calendar.get(Calendar.YEAR)-START_YEAR);
-        wy.TEXT_SIZE = DensityUtil.sp2px(context, 25);
+        CycleWheelView cycle_month = (CycleWheelView) view.findViewById(R.id.cycle_month);
 
+        cycle_year.setLabels(yearDate);
+        setParams(cycle_year, "年");
+        int year = calendar.get(Calendar.YEAR);
+        Log.d("","=====年份显示的位置===="+ (year-START_YEAR)+"");
+        cycle_year.setSelection(year-START_YEAR);
+        cycle_year.setOnWheelItemSelectedListener(yearListener);
 
 
-        //设置月份
-        WheelView wm = (WheelView) view.findViewById(R.id.wheel_month);
-        wm.setAdapter(new NumericWheelAdapter(START_MONTH, END_MONTH));
-        wm.setCyclic(true);
-        wm.setVisibleItems(5);
-        wm.setId(WHEELVIEW_MONTH_ID);
-        wm.setLabel("月");
-        SELECTOR_MONTH = calendar.get(Calendar.MONTH)+1;
-        wm.setCurrentItem(calendar.get(Calendar.MONTH)+1);
-        wm.TEXT_SIZE = DensityUtil.sp2px(context, 25);
+        cycle_month.setLabels(monthDate);
+        setParams(cycle_month, "月");
+        int month = calendar.get(Calendar.MONTH)+1;
+        cycle_month.setSelection(month-1);
+        Log.d("","=====月份显示的位置===="+ (month-1)+"");
+        cycle_month.setOnWheelItemSelectedListener(monthListener);
 
-
-        //年份的监听
-        wy.addChangingListener(wheel_listener);
-        wm.addChangingListener(wheel_listener);
-
-        //月份的监听
 
         return view;
     }
 
 
-    static OnWheelChangedListener wheel_listener = new OnWheelChangedListener() {
-        @Override
-        public void onChanged(WheelView wheel, int oldValue, int newValue) {
+    private static void addDate(){
 
-            switch (wheel.getId()){
 
-                case WHEELVIEW_YEAR_ID:
-                    SELECTOR_YEAR = newValue + START_YEAR;
-                    break;
-                case WHEELVIEW_MONTH_ID:
-                    SELECTOR_MONTH = newValue + 1;
-                    break;
+        for (int i=0; i< END_YEAR - START_YEAR; i++){
+
+            yearDate.add((START_YEAR+i)+"");
+            if (i<12){
+                monthDate.add((i+1)+"");
             }
         }
+    }
+
+
+    private static void setParams(CycleWheelView view, String lable){
+
+        view.setCycleEnable(true);
+
+        //设置字体颜色
+        view.setLabelColor(Color.parseColor("#5381F7"));
+        //设置选中时的字体颜色
+        view.setLabelSelectColor(Color.RED);
+
+        view.setSelectorTextSize(25);
+
+        view.setSelectText(lable);
+
+        try {
+            view.setWheelSize(3);
+        } catch (CycleWheelView.CycleWheelViewException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+   static CycleWheelView.WheelItemSelectedListener yearListener = new CycleWheelView.WheelItemSelectedListener() {
+        @Override
+        public void onItemSelected(int position, String label) {
+            SELECTOR_YEAR = label;
+        }
     };
+
+    static CycleWheelView.WheelItemSelectedListener monthListener = new CycleWheelView.WheelItemSelectedListener() {
+        @Override
+        public void onItemSelected(int position, String label) {
+            SELECTOR_MONTH = label;
+        }
+    };
+
 }

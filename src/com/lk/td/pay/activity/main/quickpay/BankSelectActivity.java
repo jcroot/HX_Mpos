@@ -9,42 +9,32 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.annotation.ContentView;
 import com.android.annotation.ViewInject;
 import com.android.annotation.event.OnClick;
 import com.android.annotation.event.OnTouch;
 import com.lk.td.pay.activity.base.BaseActivity;
-import com.lk.td.pay.activity.main.cashin.swing.SignaturePadActivity;
 import com.lk.td.pay.beans.BasicResponse;
 import com.lk.td.pay.beans.PopupItem;
 import com.lk.td.pay.request.BasicRequest;
 import com.lk.td.pay.request.ParamsUtils;
-import com.lk.td.pay.tool.MyHttpClient;
 import com.lk.td.pay.tool.T;
 import com.lk.td.pay.utils.BankCardValidate;
 import com.lk.td.pay.utils.ViewUtils;
 import com.lk.td.pay.wedget.CustomDialog;
 import com.lk.td.pay.wedget.CustomPopupWindow;
-import com.lk.td.pay.wedget.wheelview.WheelView;
 import com.lk.td.pay.wedget.wheelview.view.DateSelectorUtils;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.td.app.pay.hx.R;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,9 +43,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -106,7 +98,7 @@ public class BankSelectActivity extends BaseActivity{
 
     @OnClick({  R.id.btn_back,                  //返回按钮
                 R.id.btn_next,                  //下一步
-                R.id.bankReLayout              //选择银行卡
+                R.id.txt_bank                   //选择银行卡
             })
     public void onclickListener(View view ){
         Intent intent = new Intent();
@@ -114,8 +106,8 @@ public class BankSelectActivity extends BaseActivity{
             case R.id.btn_back:
                 finish();
                 break;
-            case R.id.bankReLayout:
-                bankPopup = new CustomPopupWindow(mContext, mData, new AdapterView.OnItemClickListener() {
+            case R.id.txt_bank:
+                bankPopup = new CustomPopupWindow(mContext, mData,"请选择银行类型", new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         txt_bank.setText(mData.get(position).getName());
@@ -152,6 +144,13 @@ public class BankSelectActivity extends BaseActivity{
 
     public void verifyContent(){
 
+    	String text_bank = txt_bank.getText().toString();
+    	if (TextUtils.isEmpty(text_bank)) {
+			T.sl("请选择银行卡");
+    		return;
+		}
+    	
+    	
         //输入的卡号
         cradNo =et_cradNo.getText().toString();
 
@@ -182,10 +181,39 @@ public class BankSelectActivity extends BaseActivity{
             T.sl("有效期限不能为空！");
             return ;
         }
-        if (period.trim().length()!=4){
-            T.sl("有效期错误");
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        Date date = null;
+        try {
+            date = format.parse(period);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            T.sl("日期格式错误!");
             return ;
         }
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+
+        //获取当前年月
+        int curYear = calendar.get(Calendar.YEAR);
+        int curMonth = calendar.get(Calendar.MONTH)+1;
+        //获取选择的年月
+        int selYear = c.get(Calendar.YEAR);
+        int selMonth = c.get(Calendar.MONTH)+1;
+        if (curYear > selYear){
+            T.sl("银行卡已失效");
+            return;
+        }else if(curYear == selYear){
+
+            if (curMonth >= selMonth){
+                T.sl("银行卡已失效");
+                return;
+            }
+        }
+
+
         showDialog();
 
     }
@@ -276,12 +304,12 @@ public class BankSelectActivity extends BaseActivity{
         if (dateSelector == null) {
             dateSelector = new CustomPopupWindow(mContext,
                     DateSelectorUtils.showDateSelector(mContext),
-                    "确定",
+                    "确定","",
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            et_period.setText(DateSelectorUtils.SELECTOR_YEAR+"/"+DateSelectorUtils.SELECTOR_MONTH);
+                            et_period.setText(DateSelectorUtils.SELECTOR_YEAR+"-"+DateSelectorUtils.SELECTOR_MONTH);
                             dateSelector.dismiss();
                         }
                     });

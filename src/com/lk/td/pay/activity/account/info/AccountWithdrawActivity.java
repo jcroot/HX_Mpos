@@ -442,7 +442,7 @@ public class AccountWithdrawActivity extends BaseActivity implements
         passwordDialog = builder.create();
         passwordDialog.show();
 
-       GridPasswordView gridPasswordView = (GridPasswordView) passwordView.findViewById(R.id.gridViewPassword);
+       final GridPasswordView gridPasswordView = (GridPasswordView) passwordView.findViewById(R.id.gridViewPassword);
         TextView text_amt = (TextView) passwordView.findViewById(R.id.text_amt);
         text_amt.setText(amt);
         gridPasswordView.setFocusable(true);

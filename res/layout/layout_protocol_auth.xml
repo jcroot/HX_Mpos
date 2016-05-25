@@ -18,146 +18,133 @@
         android:layout_margin="@dimen/default_margin"
         android:padding="@dimen/default_margin"
         >
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="银行卡号："
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
+                style="@style/style_text_item"
+                android:text="银行卡号"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@null"
                 />
             <TextView
                 android:id="@+id/tv_cardNo"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
                 android:text="6217831203128765"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|right"
                 android:layout_alignParentRight="true"
                 android:paddingRight="@dimen/default_margin"
                 android:textColor="@color/color_font"
                 android:textSize="@dimen/font_size_default"
                 />
-        </RelativeLayout>
-        <RelativeLayout
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="银行卡CVV："
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
+                style="@style/style_text_item"
+                android:text="CVV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@null"
                 />
             <TextView
 
                 android:id="@+id/tv_cvv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
                 android:text="123"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|right"
                 android:layout_alignParentRight="true"
                 android:paddingRight="@dimen/default_margin"
                 android:textColor="@color/color_font"
                 android:textSize="@dimen/font_size_default"
                 />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35sp"
             android:orientation="horizontal"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="有效期限："
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
+                style="@style/style_text_item"
+                android:text="有效期限"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@null"
                 />
             <TextView
                 android:id="@+id/tv_period"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
                 android:text="21/12"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|right"
                 android:layout_alignParentRight="true"
                 android:paddingRight="@dimen/default_margin"
                 android:textColor="@color/color_font"
                 android:textSize="@dimen/font_size_default"
                 />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/white_background_reg"
-        android:layout_margin="@dimen/default_margin"
-        android:padding="@dimen/default_margin"
-        >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
+        <LinearLayout style="@style/style_edit_layout">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="身份证"
-                android:textColor="@color/black" />
+                style="@style/style_text_item"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="身份证号码" />
 
             <EditText
                 android:id="@+id/et_cradNo"
-                style="@style/textView_check_style"
-                android:background="@drawable/selector_input_reg"
-                android:editable="false"
-                android:hint="身份证号码"
-                android:inputType="number"
-                android:maxLength="19"
-                android:singleLine="true" />
+                style="@style/style_edit_item"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:hint="请输入身份证号码" />
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
+        <LinearLayout style="@style/style_edit_layout">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="手机号"
-                android:textColor="@color/black" />
+                style="@style/style_text_item"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="手机号" />
 
             <EditText
                 android:id="@+id/et_Mobile"
-                style="@style/textView_check_style"
-                android:background="@drawable/selector_input_reg"
-                android:digits="0123456789"
-                android:editable="false"
-                android:hint="手机号"
-                android:inputType="number"
-                android:maxLength="19"
-                android:singleLine="true" />
+                style="@style/style_edit_item"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:hint="请输入手机号码" />
+
         </LinearLayout>
         <LinearLayout
             android:id="@+id/auth_protocol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|right"
+            android:layout_marginRight="@dimen/default_margin"
             >
             <CheckBox
                 android:id="@+id/select_protocol"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                />
 
             <TextView
                 android:id="@+id/selector_protocol"
@@ -171,7 +158,6 @@
                 />
         </LinearLayout>
 
-    </LinearLayout>
     <Button
         android:id="@+id/btn_protocol_next"
         style="@style/style_btn"

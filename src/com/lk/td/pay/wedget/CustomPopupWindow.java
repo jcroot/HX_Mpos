@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,6 +26,7 @@ import com.lk.td.pay.beans.PopupItem;
 import com.lk.td.pay.utils.DensityUtil;
 import com.td.app.pay.hx.R;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -36,13 +38,22 @@ public class CustomPopupWindow extends PopupWindow{
     private ListView listView;
     private View popupView;
     private PopupAdapter mAdapter;
-
-    public CustomPopupWindow(Activity context, View view, String text, OnClickListener onClickListener){
+    private LinearLayout popup_title_layout;
+    private TextView popup_title;
+    public CustomPopupWindow(Activity context, View view, String text,String title,  OnClickListener onClickListener){
         this.context = context;
         popupView = LayoutInflater.from(context).inflate(R.layout.layout_popup, null);
         listView = (ListView) popupView.findViewById(R.id.popup_list);
         listView.setVisibility(View.GONE);
         LinearLayout layout = (LinearLayout) popupView.findViewById(R.id.wheelview_layout);
+        popup_title_layout = (LinearLayout) popupView.findViewById(R.id.popup_title_layout);
+        popup_title = (TextView) popupView.findViewById(R.id.popup_title);
+
+        Calendar c = Calendar.getInstance();
+        popup_title.setText("当前日期:  "
+                +c.get(Calendar.YEAR)+" 年 "
+                +(c.get(Calendar.MONTH)+1)+" 月 "
+                +c.get(Calendar.DAY_OF_MONTH) +" 日");
 
         layout.addView(view);
 
@@ -52,14 +63,24 @@ public class CustomPopupWindow extends PopupWindow{
 
         initPopup();
     }
-    public CustomPopupWindow(Activity context, List<PopupItem> list, AdapterView.OnItemClickListener itemClick){
+    public CustomPopupWindow(Activity context, List<PopupItem> list, String title, AdapterView.OnItemClickListener itemClick){
         this.context = context;
         this.mData = list;
 
         popupView = LayoutInflater.from(context).inflate(R.layout.layout_popup, null);
         listView = (ListView) popupView.findViewById(R.id.popup_list);
         LinearLayout layout = (LinearLayout) popupView.findViewById(R.id.wheelview_layout);
+        popup_title_layout = (LinearLayout) popupView.findViewById(R.id.popup_title_layout);
+        popup_title = (TextView) popupView.findViewById(R.id.popup_title);
         layout.setVisibility(View.GONE);
+
+        if (TextUtils.isEmpty(title)){
+            popup_title_layout.setVisibility(View.GONE);
+        }else{
+            popup_title_layout.setVisibility(View.VISIBLE);
+            popup_title.setText(title);
+        }
+
         popupView.findViewById(R.id.popup_cancel).setOnClickListener(new OnClickListener() {
 
 			@Override

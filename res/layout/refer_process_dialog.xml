@@ -29,7 +29,7 @@
 		    android:id="@+id/declinedButton"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:text="@string/decline" />
+		    android:text="@string/declined" />
 		
 		<Button
 		    android:id="@+id/cancelButton"
